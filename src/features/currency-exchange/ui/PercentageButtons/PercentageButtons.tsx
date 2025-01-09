@@ -4,7 +4,6 @@ import Decimal from 'decimal.js';
 
 interface PercentageButtonsProps {
     percentages: number[];
-    baseAmount: number;
     currentAmount: string;
     maxAmount: number;
     onAmountChange: (amount: string) => void;
@@ -12,7 +11,6 @@ interface PercentageButtonsProps {
 
 export const PercentageButtons: FC<PercentageButtonsProps> = ({
     percentages,
-    baseAmount,
     currentAmount,
     maxAmount,
     onAmountChange
@@ -42,7 +40,9 @@ export const PercentageButtons: FC<PercentageButtonsProps> = ({
                     <button
                         key={percent}
                         className={styles.percentButton}
-                        onClick={() => onAmountChange((baseAmount * percent / 100).toString())}
+                        onClick={() => onAmountChange(percent === 100 
+                            ? maxAmount.toFixed(2) 
+                            : (maxAmount * percent / 100).toFixed(2))}
                         style={{ '--fill-percent': `${fillPercent}%` } as React.CSSProperties}
                     >
                         {percent}%

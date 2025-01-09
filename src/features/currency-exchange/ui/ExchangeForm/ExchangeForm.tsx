@@ -7,14 +7,14 @@ import styles from './ExchangeForm.module.css';
 
 export const ExchangeForm: FC = () => {
     const { inAmount, outAmount, isLoading, limits } = useAppSelector(state => state.exchange);
-    const { 
-        localInAmount, 
-        localOutAmount, 
-        setLocalInAmount, 
-        setLocalOutAmount 
-    } = useDebounceExchange({ 
-        inAmount, 
-        outAmount 
+    const {
+        localInAmount,
+        localOutAmount,
+        setLocalInAmount,
+        setLocalOutAmount
+    } = useDebounceExchange({
+        inAmount,
+        outAmount
     });
 
     return (
@@ -29,13 +29,12 @@ export const ExchangeForm: FC = () => {
                 />
                 <PercentageButtons
                     percentages={[25, 50, 75, 100]}
-                    baseAmount={limits.from.max}
                     currentAmount={localInAmount}
                     maxAmount={limits.from.max}
                     onAmountChange={setLocalInAmount}
                 />
             </div>
-            
+
             <div className={styles.inputBlock}>
                 <CurrencyInput
                     value={localOutAmount}
@@ -46,7 +45,6 @@ export const ExchangeForm: FC = () => {
                 />
                 <PercentageButtons
                     percentages={[25, 50, 75, 100]}
-                    baseAmount={limits.to.max}
                     currentAmount={localOutAmount}
                     maxAmount={limits.to.max}
                     onAmountChange={setLocalOutAmount}

@@ -23,15 +23,19 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
     return (
         <div className={styles.container}>
             <div className={styles.inputWrapper}>
-                <input
-                    type="number"
-                    value={value}
-                    onChange={handleChange}
-                    step={step}
-                    disabled={loading}
-                    className={styles.input}
-                />
-                <span className={styles.currency}>{currency}</span>
+                <div className={styles.inputContainer}>
+                    <input
+                        type="text"
+                        value={value}
+                        onChange={handleChange}
+                        inputMode="decimal"
+                        pattern="[0-9]*[.,]?[0-9]*"
+                        step={step}
+                        disabled={loading}
+                        className={styles.input}
+                    />
+                    <span className={styles.currency}>{currency}</span>
+                </div>
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ const initialState: ExchangeState = {
         to: {
             min: 0,
             max: 0,
-            step: 0.000001
+            step: 0.01
         }
     }
 };
@@ -54,8 +54,8 @@ export const exchangeSlice = createSlice({
                 const exchangeRate = new Decimal(action.payload.price[0]);
                 
                 // Обновляем только лимиты для правого инпута (USDT)
-                state.limits.to.min = new Decimal(1000).mul(exchangeRate).toNumber();
-                state.limits.to.max = new Decimal(70000000).mul(exchangeRate).toNumber();
+                state.limits.to.min = new Decimal(1000).mul(exchangeRate).toDecimalPlaces(2).toNumber();
+                state.limits.to.max = new Decimal(70000000).mul(exchangeRate).toDecimalPlaces(2).toNumber();
 
                 // Обновляем значения в зависимости от направления
                 if (action.meta.arg.isFromLeft) {

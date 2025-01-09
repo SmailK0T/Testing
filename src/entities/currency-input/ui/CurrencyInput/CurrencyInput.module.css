@@ -8,20 +8,27 @@
     display: flex;
     align-items: center;
     width: 100%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.inputContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
 .input {
     width: 100%;
     font-size: 42px;
     border: none;
-    border-bottom: 1px solid var(--border-color);
     background: transparent;
     outline: none;
     font-weight: 600;
+    padding-right: 80px; /* Место для валюты */
 }
 
 .input:focus {
-    border-bottom-color: var(--button-bg);
+    outline: none;
 }
 
 .input:disabled {
@@ -32,6 +39,8 @@
 .currency {
     position: absolute;
     right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--main-blue);
     font-size: 32px;
     font-family: 'Inter', sans-serif;
@@ -39,6 +48,7 @@
     font-weight: 600;
     line-height: 120%;
     pointer-events: none;
+    background: var(--bg-color);
 }
 
 /* Убираем стрелки у input type="number" */
