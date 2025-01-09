@@ -1,0 +1,43 @@
+.toggle {
+    width: 50px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: var(--toggle-bg);
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toggle::before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: var(--toggle-handle);
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+.toggle[data-theme='dark']::before {
+    transform: translateX(25px);
+}
+
+/* Иконки для светлой/темной темы */
+.toggle::after {
+    content: '🌞';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    font-size: 14px;
+}
+
+.toggle[data-theme='dark']::after {
+    content: '🌙';
+    left: auto;
+    right: 5px;
+}
