@@ -29,7 +29,7 @@
     width: var(--fill-percent);
     height: 100%;
     background: var(--button-bg);
-    opacity: 0.2;
+
     transition: width 0.3s ease;
     z-index: 0;
 }
@@ -46,6 +46,11 @@
 }
 
 .percentButton:hover span {
+    color: white;
+}
+
+/* Когда кнопка полностью заполнена, текст становится белым */
+.percentButton[style*="--fill-percent: 100%"] span {
     color: white;
 }
 
