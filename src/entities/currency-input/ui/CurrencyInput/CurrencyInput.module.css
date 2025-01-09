@@ -20,6 +20,7 @@
 .input {
     width: 100%;
     font-size: 42px;
+    color: var(--input-text);
     border: none;
     background: transparent;
     outline: none;
