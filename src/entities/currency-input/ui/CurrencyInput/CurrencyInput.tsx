@@ -13,7 +13,7 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
     value,
     currency,
     onChange,
-    step = '0.01',
+    step,
     loading = false
 }) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     border-bottom: 1px solid var(--border-color);
+    margin-bottom: 8px;
 }
 
 .inputWrapper {
@@ -13,6 +14,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    margin-bottom: 8px;
 }
 
 .input {
