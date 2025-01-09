@@ -23,3 +23,18 @@
     font-size: 24px;
     color: var(--text-primary);
 }
+
+/* Медиа-запрос для маленьких экранов */
+@media screen and (max-width: 350px) {
+    .app {
+        padding: 10px;
+    }
+
+    .header {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+}

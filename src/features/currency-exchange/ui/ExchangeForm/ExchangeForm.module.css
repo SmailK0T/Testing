@@ -45,3 +45,15 @@
         gap: 1rem;
     }
 }
+
+/* Медиа-запрос для маленьких экранов */
+@media screen and (max-width: 370px) {
+    .container {
+        padding: 10px;
+        gap: 1rem;
+    }
+
+    .inputBlock {
+        padding: 10px;
+    }
+}

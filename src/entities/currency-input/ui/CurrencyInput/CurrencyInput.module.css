@@ -33,3 +33,17 @@
     color: var(--text-secondary);
     font-size: 14px;
 }
+
+/* Медиа-запрос для маленьких экранов */
+@media screen and (max-width: 370px) {
+    .input {
+        padding: 8px;
+        padding-right: 50px;
+        font-size: 14px;
+    }
+
+    .currency {
+        right: 8px;
+        font-size: 12px;
+    }
+}

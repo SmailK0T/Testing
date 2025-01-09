@@ -37,3 +37,15 @@
 .percentButton:hover::before {
     opacity: 0.3;
 }
+
+/* Медиа-запрос для маленьких экранов */
+@media screen and (max-width: 370px) {
+    .percentages {
+        gap: 4px;
+    }
+
+    .percentButton {
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+}

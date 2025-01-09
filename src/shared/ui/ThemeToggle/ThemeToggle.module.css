@@ -41,3 +41,33 @@
     left: auto;
     right: 5px;
 }
+
+/* Медиа-запрос для маленьких экранов */
+@media screen and (max-width: 350px) {
+    .toggle {
+        width: 40px;
+        height: 20px;
+        border-radius: 12px;
+    }
+
+    .toggle::before {
+        width: 16px;
+        height: 16px;
+        top: 2px;
+        left: 2px;
+    }
+
+    .toggle[data-theme='dark']::before {
+        transform: translateX(20px);
+    }
+
+    .toggle::after {
+        font-size: 11px;
+        top: 1px;
+        left: 4px;
+    }
+
+    .toggle[data-theme='dark']::after {
+        right: 4px;
+    }
+}
