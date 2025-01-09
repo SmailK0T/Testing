@@ -7,6 +7,7 @@ interface CurrencyInputProps {
     onChange: (value: string) => void;
     step?: string;
     className?: string;
+    loading?: boolean
 }
 
 export const CurrencyInput: FC<CurrencyInputProps> = ({
@@ -14,7 +15,8 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
     currency,
     onChange,
     step,
-    className = ''
+    className = '',
+    loading
 }) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.replace(/[^0-9.]/g, '');
@@ -30,6 +32,7 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
                 className={styles.input}
                 placeholder="0.00"
                 step={step}
+                disabled={loading}
             />
             <span className={styles.currency}>{currency}</span>
         </div>

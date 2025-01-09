@@ -1,55 +1,51 @@
 import { FC } from 'react';
 import { CurrencyInput } from '../../../../entities/currency-input/ui/CurrencyInput/CurrencyInput';
 import { PercentageButtons } from '../PercentageButtons/PercentageButtons';
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
-import { fetchCalcPair } from '../../model/exchangeSlice';
+import { useAppSelector } from '../../../../app/store/hooks';
+import { useDebounceExchange } from '../../model/useDebounceExchange';
 import styles from './ExchangeForm.module.css';
 
 export const ExchangeForm: FC = () => {
-    const dispatch = useAppDispatch();
-    const { fromAmount, toAmount } = useAppSelector(state => state.exchange);
-
-    const handleFromAmountChange = (value: string) => {
-        dispatch(fetchCalcPair({ 
-            amount: value, 
-            isFromLeft: true 
-        }));
-    };
-
-    const handleToAmountChange = (value: string) => {
-        dispatch(fetchCalcPair({ 
-            amount: value, 
-            isFromLeft: false 
-        }));
-    };
+    const { inAmount, outAmount, isLoading } = useAppSelector(state => state.exchange);
+    const { 
+        localInAmount, 
+        localOutAmount, 
+        setLocalInAmount, 
+        setLocalOutAmount 
+    } = useDebounceExchange({ 
+        inAmount, 
+        outAmount 
+    });
 
     return (
         <div className={styles.container}>
             <div className={styles.inputBlock}>
                 <CurrencyInput
-                    value={fromAmount}
+                    value={localInAmount}
                     currency="RUB"
-                    onChange={handleFromAmountChange}
+                    onChange={setLocalInAmount}
                     step="100"
+                    loading={isLoading}
                 />
                 <PercentageButtons
                     percentages={[25, 50, 75, 100]}
                     baseAmount={10000}
-                    onAmountChange={handleFromAmountChange}
+                    onAmountChange={setLocalInAmount}
                 />
             </div>
             
             <div className={styles.inputBlock}>
                 <CurrencyInput
-                    value={toAmount}
+                    value={localOutAmount}
                     currency="USDT"
-                    onChange={handleToAmountChange}
+                    onChange={setLocalOutAmount}
                     step="0.01"
+                    loading={isLoading}
                 />
                 <PercentageButtons
                     percentages={[25, 50, 75, 100]}
                     baseAmount={100}
-                    onAmountChange={handleToAmountChange}
+                    onAmountChange={setLocalOutAmount}
                 />
             </div>
         </div>

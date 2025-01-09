@@ -20,8 +20,6 @@ export default defineConfig({
         secure: false,
       },
     },
-    port: 3000,
-    open: true,
   },
   build: {
     outDir: 'dist',

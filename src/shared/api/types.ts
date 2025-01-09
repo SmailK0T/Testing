@@ -1,6 +1,6 @@
 export interface CalcRequest {
     pairId: number;
-    inAmount: number | null;
+    inAmount: string | null;
     outAmount: number | null;
 }
 

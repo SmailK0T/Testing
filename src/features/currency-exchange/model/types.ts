@@ -12,8 +12,8 @@ interface Limits {
 }
 
 export interface ExchangeState {
-    fromAmount: string;
-    toAmount: string;
+    inAmount: string;
+    outAmount: string;
     isLoading: boolean;
     error: string | null;
     lastRequestTime?: number;

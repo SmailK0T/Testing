@@ -4,8 +4,8 @@ import { ExchangeState } from './types';
 import { exchangeApi } from '../../../shared/api/exchange.api';
 
 const initialState: ExchangeState = {
-    fromAmount: '10000',  // Начальное значение = min
-    toAmount: '0',
+    inAmount: '10000',  // Начальное значение = min
+    outAmount: '0',
     isLoading: false,
     error: null,
     limits: {
@@ -17,7 +17,7 @@ const initialState: ExchangeState = {
         to: {
             min: 0,
             max: 0,
-            step: 0.000001
+            step: 0.01
         }
     }
 };
@@ -29,7 +29,7 @@ export const fetchCalcPair = createAsyncThunk(
             const amount = new Decimal(params.amount);
             return await exchangeApi.postCalcPair({
                 pairId: 133,
-                inAmount: params.isFromLeft ? amount.toNumber() : null,
+                inAmount: params.isFromLeft ? String(amount.toNumber()) : null,
                 outAmount: params.isFromLeft ? null : amount.toNumber()
             });
         } catch {
@@ -59,9 +59,9 @@ export const exchangeSlice = createSlice({
 
                 // Обновляем значения в зависимости от направления
                 if (action.meta.arg.isFromLeft) {
-                    state.toAmount = new Decimal(action.payload.outAmount).toFixed(6);
+                    state.inAmount = new Decimal(action.payload.outAmount).toFixed(6);
                 } else {
-                    state.fromAmount = new Decimal(action.payload.inAmount).toFixed(2);
+                    state.outAmount = new Decimal(action.payload.inAmount).toFixed(2);
                 }
             })
             .addCase(fetchCalcPair.rejected, (state, action) => {
