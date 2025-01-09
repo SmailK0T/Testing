@@ -1,13 +1,24 @@
 export interface ExchangeFormProps {
-    fromCurrency?: string;
-    toCurrency?: string;
     initialFromAmount?: string;
     initialToAmount?: string;
     onExchangeChange?: (values: { from: string; to: string }) => void;
     className?: string;
 }
 
-export interface ExchangeValues {
-    from: string;
-    to: string;
+interface Limits {
+    min: number;
+    max: number;
+    step: number;
+}
+
+export interface ExchangeState {
+    fromAmount: string;
+    toAmount: string;
+    isLoading: boolean;
+    error: string | null;
+    lastRequestTime?: number;
+    limits: {
+        from: Limits;  // min=10k, max=70M, step=100
+        to: Limits;    // step=0.000001, min/max из API
+    };
 }

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import exchangeReducer from './exchangeSlice';
+import exchangeReducer from '../../features/currency-exchange/model/exchangeSlice';
 
 export const store = configureStore({
     reducer: {
