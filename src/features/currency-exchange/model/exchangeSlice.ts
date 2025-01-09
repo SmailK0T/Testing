@@ -17,7 +17,7 @@ const initialState: ExchangeState = {
         to: {
             min: 0,
             max: 0,
-            step: 0.01
+            step: 0.000001
         }
     }
 };
@@ -51,17 +51,19 @@ export const exchangeSlice = createSlice({
             })
             .addCase(fetchCalcPair.fulfilled, (state, action) => {
                 state.isLoading = false;
-                const price = new Decimal(action.payload.price[0]);
+                const exchangeRate = new Decimal(action.payload.price[0]); // Используем price[1] для расчета лимитов
                 
-                // Обновляем лимиты для правого инпута на основе курса
-                state.limits.to.min = new Decimal(state.limits.from.min).mul(price).toNumber();
-                state.limits.to.max = new Decimal(state.limits.from.max).mul(price).toNumber();
+                // Обновляем только лимиты для правого инпута (USDT)
+                state.limits.to.min = new Decimal(1000).mul(exchangeRate).toNumber();
+                state.limits.to.max = new Decimal(70000000).mul(exchangeRate).toNumber();
 
                 // Обновляем значения в зависимости от направления
                 if (action.meta.arg.isFromLeft) {
-                    state.inAmount = new Decimal(action.payload.outAmount).toFixed(6);
+                    state.inAmount = String(action.payload.inAmount);
+                    state.outAmount = new Decimal(action.payload.outAmount).toFixed(6);
                 } else {
-                    state.outAmount = new Decimal(action.payload.inAmount).toFixed(2);
+                    state.inAmount = String(action.payload.inAmount);
+                    state.outAmount = String(action.payload.outAmount);
                 }
             })
             .addCase(fetchCalcPair.rejected, (state, action) => {

@@ -37,7 +37,7 @@ const roundToStep = (value: Decimal, step: number): string => {
 export const useDebounceExchange = ({ 
     inAmount: initialInAmount, 
     outAmount: initialOutAmount,
-    delay = 500 
+    delay = 1000 
 }: UseDebounceExchangeProps) => {
     const dispatch = useAppDispatch();
     const { limits } = useAppSelector(state => state.exchange);
@@ -92,18 +92,13 @@ export const useDebounceExchange = ({
                 // Если нужно обновить значение в инпуте
                 if (needsUpdate) {
                     setLocalInAmount(validAmount);
-                    setTimeout(() => {
-                        dispatch(fetchCalcPair({ 
-                            amount: validAmount, 
-                            isFromLeft: true 
-                        }));
-                    }, 0);
-                } else {
-                    dispatch(fetchCalcPair({ 
-                        amount: validAmount, 
-                        isFromLeft: true 
-                    }));
                 }
+                
+                // Отправляем запрос только один раз
+                dispatch(fetchCalcPair({ 
+                    amount: validAmount, 
+                    isFromLeft: true 
+                }));
             }
         }, delay);
 
@@ -118,7 +113,7 @@ export const useDebounceExchange = ({
                 const amount = new Decimal(normalizedAmount);
                 const minAmount = new Decimal(limits.to.min);
                 const maxAmount = new Decimal(limits.to.max);
-                const step = new Decimal(0.01); // Шаг для USDT
+                const step = new Decimal(0.000001); // Шаг для USDT
 
                 let validAmount = normalizedAmount;
                 let needsUpdate = false;
@@ -149,18 +144,13 @@ export const useDebounceExchange = ({
                 // Если нужно обновить значение в инпуте
                 if (needsUpdate) {
                     setLocalOutAmount(validAmount);
-                    setTimeout(() => {
-                        dispatch(fetchCalcPair({ 
-                            amount: validAmount, 
-                            isFromLeft: false 
-                        }));
-                    }, 0);
-                } else {
-                    dispatch(fetchCalcPair({ 
-                        amount: validAmount, 
-                        isFromLeft: false 
-                    }));
                 }
+
+                // Отправляем запрос только один раз
+                dispatch(fetchCalcPair({ 
+                    amount: validAmount, 
+                    isFromLeft: false 
+                }));
             }
         }, delay);
 

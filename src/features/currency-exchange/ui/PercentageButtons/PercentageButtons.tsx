@@ -25,10 +25,10 @@ export const PercentageButtons: FC<PercentageButtonsProps> = ({
     const getButtonFillPercentage = (buttonPercent: number) => {
         const currentPercentage = getCurrentPercentage();
         const prevPercent = percentages[percentages.indexOf(buttonPercent) - 1] || 0;
-        
+
         if (currentPercentage <= prevPercent) return 0;
         if (currentPercentage >= buttonPercent) return 100;
-        
+
         const percentageInThisRange = currentPercentage - prevPercent;
         const rangeSize = buttonPercent - prevPercent;
         return (percentageInThisRange / rangeSize) * 100;
@@ -39,7 +39,7 @@ export const PercentageButtons: FC<PercentageButtonsProps> = ({
             {percentages.map((percent) => {
                 const fillPercent = getButtonFillPercentage(percent);
                 return (
-                    <button 
+                    <button
                         key={percent}
                         className={styles.percentButton}
                         onClick={() => onAmountChange((baseAmount * percent / 100).toString())}

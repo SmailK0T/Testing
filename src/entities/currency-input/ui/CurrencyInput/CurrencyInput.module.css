@@ -1,23 +1,22 @@
-.wrapper {
+.container {
     position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .input {
     width: 100%;
-    padding: 12px;
-    padding-right: 60px;
-    border: 1px solid var(--input-border);
-    border-radius: 4px;
-    font-size: 16px;
-    background: var(--input-bg);
-    color: var(--input-text);
-    transition: border-color 0.2s;
+    font-size: 42px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    background: transparent;
+    outline: none;
+    padding-right: 80px;
 }
 
 .input:focus {
-    outline: none;
-    border-color: var(--button-bg);
+    border-bottom-color: var(--button-bg);
 }
 
 .input:disabled {
@@ -26,24 +25,20 @@
 }
 
 .currency {
+    color: var(--main-blue);
+    font-size: 32px;
     position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-secondary);
-    font-size: 14px;
+    right: 0;
+    margin-left: 8px;
 }
 
 /* Медиа-запрос для маленьких экранов */
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 480px) {
     .input {
-        padding: 8px;
-        padding-right: 50px;
-        font-size: 14px;
+        font-size: 32px;
     }
 
     .currency {
-        right: 8px;
-        font-size: 12px;
+        font-size: 24px;
     }
 }

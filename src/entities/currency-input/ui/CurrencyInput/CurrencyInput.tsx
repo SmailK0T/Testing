@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react';
+import { FC, ChangeEvent } from 'react';
 import styles from './CurrencyInput.module.css';
 
 interface CurrencyInputProps {
@@ -14,9 +14,9 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
     value,
     currency,
     onChange,
-    step,
+    step = '0.01',
     className = '',
-    loading
+    loading = false
 }) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.replace(/[^0-9.]/g, '');
@@ -24,15 +24,14 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
     };
 
     return (
-        <div className={`${styles.wrapper} ${className}`}>
+        <div className={`${styles.container} ${className}`}>
             <input
-                type="text"
+                type="number"
                 value={value}
                 onChange={handleChange}
-                className={styles.input}
-                placeholder="0.00"
                 step={step}
                 disabled={loading}
+                className={styles.input}
             />
             <span className={styles.currency}>{currency}</span>
         </div>
