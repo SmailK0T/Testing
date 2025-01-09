@@ -1,19 +1,17 @@
 .container {
-    position: relative;
-    width: 100%;
-}
-
-.inputWrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
     width: 100%;
     border-bottom: 1px solid var(--border-color);
 }
 
+.inputWrapper {
+    display: flex;
+    align-items: center;
+}
+
 .inputContainer {
-    position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
     overflow: hidden;
 }
 
@@ -24,7 +22,6 @@
     background: transparent;
     outline: none;
     font-weight: 600;
-    padding-right: 80px; /* Место для валюты */
 }
 
 .input:focus {
@@ -37,7 +34,7 @@
 }
 
 .currency {
-    position: absolute;
+    width: 100%;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
