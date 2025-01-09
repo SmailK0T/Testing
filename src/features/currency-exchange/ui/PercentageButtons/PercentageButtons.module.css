@@ -12,8 +12,6 @@
     border-radius: 10px;
     background: transparent;
     color: var(--text-primary);
-    font-size: 16px;
-    font-weight: 500;
     cursor: pointer;
     overflow: hidden;
     width: 100%;
@@ -29,13 +27,15 @@
     width: var(--fill-percent);
     height: 100%;
     background: var(--button-bg);
-
     transition: width 0.3s ease;
     z-index: 0;
 }
 
 .percentButton span {
     position: relative;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 13px;
     z-index: 1;
     transition: color 0.3s ease;
 }
