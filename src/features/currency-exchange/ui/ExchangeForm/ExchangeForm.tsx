@@ -1,49 +1,55 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { CurrencyInput } from '../../../../entities/currency-input/ui/CurrencyInput/CurrencyInput';
+import { PercentageButtons } from '../PercentageButtons/PercentageButtons';
+import { useExchangeCalculations } from '../../model/useExchangeCalculations';
+import { ExchangeFormProps } from '../../model/types';
 import styles from './ExchangeForm.module.css';
 
-export const ExchangeForm: FC = () => {
-    const [fromAmount, setFromAmount] = useState('10000');
-    const [toAmount, setToAmount] = useState('100');
+export const ExchangeForm: FC<ExchangeFormProps> = ({
+    fromCurrency = 'RUB',
+    toCurrency = 'USDT',
+    initialFromAmount,
+    initialToAmount,
+    onExchangeChange,
+    className
+}) => {
+    const {
+        fromAmount,
+        toAmount,
+        onFromAmountChange,
+        onToAmountChange
+    } = useExchangeCalculations({
+        initialFromAmount,
+        initialToAmount,
+        onExchangeChange
+    });
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${className || ''}`}>
             <div className={styles.inputBlock}>
                 <CurrencyInput
                     value={fromAmount}
-                    currency="RUB"
-                    onChange={setFromAmount}
+                    currency={fromCurrency}
+                    onChange={onFromAmountChange}
                 />
-                <div className={styles.percentages}>
-                    {[25, 50, 75, 100].map((percent) => (
-                        <button 
-                            key={percent}
-                            className={styles.percentButton}
-                            onClick={() => setFromAmount((10000 * percent / 100).toString())}
-                        >
-                            {percent}%
-                        </button>
-                    ))}
-                </div>
+                <PercentageButtons
+                    percentages={[25, 50, 75, 100]}
+                    baseAmount={10000}
+                    onAmountChange={onFromAmountChange}
+                />
             </div>
             
             <div className={styles.inputBlock}>
                 <CurrencyInput
                     value={toAmount}
-                    currency="USDT"
-                    onChange={setToAmount}
+                    currency={toCurrency}
+                    onChange={onToAmountChange}
                 />
-                <div className={styles.percentages}>
-                    {[25, 50, 75, 100].map((percent) => (
-                        <button 
-                            key={percent}
-                            className={styles.percentButton}
-                            onClick={() => setToAmount((100 * percent / 100).toString())}
-                        >
-                            {percent}%
-                        </button>
-                    ))}
-                </div>
+                <PercentageButtons
+                    percentages={[25, 50, 75, 100]}
+                    baseAmount={100}
+                    onAmountChange={onToAmountChange}
+                />
             </div>
         </div>
     );
