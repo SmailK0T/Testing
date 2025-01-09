@@ -41,7 +41,7 @@ export const ExchangeForm: FC = () => {
                     value={localOutAmount}
                     currency="USDT"
                     onChange={setLocalOutAmount}
-                    step="0.01"
+                    step="0.000001"
                     loading={isLoading}
                 />
                 <PercentageButtons
