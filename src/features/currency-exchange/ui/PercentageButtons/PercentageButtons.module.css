@@ -1,21 +1,24 @@
 .percentages {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
-    margin-top: 8px;
+    width: 100%;
+    margin-top: 16px;
 }
 
 .percentButton {
-    width: 60px;
-    height: 20px;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all 0.2s;
     position: relative;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
     overflow: hidden;
-    font-size: 12px;
+    width: 100%;
+    min-width: 0;
 }
 
 .percentButton::before {
@@ -31,12 +34,19 @@
     z-index: 0;
 }
 
-.percentButton:hover {
-    background: var(--bg-secondary);
+.percentButton span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
 }
 
 .percentButton:hover::before {
+    --fill-percent: 100% !important;
     opacity: 0.3;
+}
+
+.percentButton:hover span {
+    color: white;
 }
 
 /* Медиа-запрос для маленьких экранов */

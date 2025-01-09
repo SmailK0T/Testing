@@ -1,8 +1,13 @@
 .container {
     position: relative;
     width: 100%;
+}
+
+.inputWrapper {
+    position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .input {
@@ -12,7 +17,7 @@
     border-bottom: 1px solid var(--border-color);
     background: transparent;
     outline: none;
-    padding-right: 80px;
+    font-weight: 600;
 }
 
 .input:focus {
@@ -25,11 +30,26 @@
 }
 
 .currency {
-    color: var(--main-blue);
-    font-size: 32px;
     position: absolute;
     right: 0;
-    margin-left: 8px;
+    color: var(--main-blue);
+    font-size: 32px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    pointer-events: none;
+}
+
+/* Убираем стрелки у input type="number" */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input[type=number] {
+    -moz-appearance: textfield;
 }
 
 /* Медиа-запрос для маленьких экранов */
