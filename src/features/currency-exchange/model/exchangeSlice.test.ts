@@ -63,7 +63,7 @@ describe('exchangeSlice', () => {
             expect(state.error).toBeNull();
             expect(state.inAmount).toBe('10000');
             expect(state.outAmount).toBe('25000');
-            expect(state.limits.to.min).toBe(2500); // 1000 * 2.5
+            expect(state.limits.to.min).toBe(25000); // 10000 * 2.5
             expect(state.limits.to.max).toBe(175000000); // 70M * 2.5
         });
 
@@ -83,7 +83,7 @@ describe('exchangeSlice', () => {
             expect(state.error).toBeNull();
             expect(state.inAmount).toBe('4000');
             expect(state.outAmount).toBe('10000');
-            expect(state.limits.to.min).toBe(2500);
+            expect(state.limits.to.min).toBe(25000);
             expect(state.limits.to.max).toBe(175000000);
         });
 
@@ -161,7 +161,7 @@ describe('exchangeSlice', () => {
             await store.dispatch(fetchCalcPair({ amount: '10000', isFromLeft: true }));
             const state = store.getState().exchange;
 
-            expect(state.limits.to.min).toBe(3000);      // 1000 * 3.0
+            expect(state.limits.to.min).toBe(30000);      // 10000 * 3.0
             expect(state.limits.to.max).toBe(210000000); // 70M * 3.0
         });
     });

@@ -30,7 +30,7 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
                         onChange={handleChange}
                         inputMode="decimal"
                         pattern="[0-9]*[.,]?[0-9]*"
-                        step={step}
+                        step={step || "0.01"}
                         disabled={loading}
                         className={styles.input}
                     />
