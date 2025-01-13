@@ -43,7 +43,10 @@ export const PercentageButtons: FC<PercentageButtonsProps> = ({
                         onClick={() => onAmountChange(percent === 100
                             ? maxAmount.toFixed(2)
                             : (maxAmount * percent / 100).toFixed(2))}
-                        style={{ '--fill-percent': `${fillPercent}%` } as React.CSSProperties}
+                        style={{
+                            '--fill-percent': `${fillPercent}%`,
+                            '--button-text-filled': 'white'
+                        } as React.CSSProperties}
                     >
                         <span>{percent}%</span>
                     </button>
