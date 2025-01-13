@@ -37,7 +37,7 @@ export const CurrencyInput: FC<CurrencyInputProps> = ({
                     <div>
                         <span className={styles.currency}>{currency}</span>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
