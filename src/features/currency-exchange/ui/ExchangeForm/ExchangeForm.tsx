@@ -1,12 +1,14 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { CurrencyInput } from '../../../../entities/currency-input/ui/CurrencyInput/CurrencyInput';
 import { PercentageButtons } from '../PercentageButtons/PercentageButtons';
-import { useAppSelector } from '../../../../app/store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
 import { useDebounceExchange } from '../../model/useDebounceExchange';
 import styles from './ExchangeForm.module.css';
+import { fetchCalcPair } from '../../model/exchangeSlice';
 
 export const ExchangeForm: FC = () => {
     const { inAmount, outAmount, isLoading, limits } = useAppSelector(state => state.exchange);
+    const dispatch = useAppDispatch();
     const {
         localInAmount,
         localOutAmount,
@@ -16,6 +18,10 @@ export const ExchangeForm: FC = () => {
         inAmount,
         outAmount
     });
+
+    useEffect(() => {
+        dispatch(fetchCalcPair({ amount: localInAmount, isFromLeft: true }));
+    }, [])
 
     return (
         <div className={styles.container}>
